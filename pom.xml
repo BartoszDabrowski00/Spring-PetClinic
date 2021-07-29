@@ -48,9 +48,7 @@
         </pluginManagement>
     </build>
     <scm>
-        <developerConnection>
-            scm:git:https://github.com/BartoszDabrowski00/Spring-PetClinic.git
-        </developerConnection>
-      <tag>spring-pet-clinic-0.0.1</tag>
-  </scm>
+        <url>https://github.com/BartoszDabrowski00/Spring-PetClinic</url>
+        <connection>scm:git:https://github.com/BartoszDabrowski00/Spring-PetClinic.git</connection>
+    </scm>
 </project>
