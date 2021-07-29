@@ -14,7 +14,7 @@
     </parent>
     <groupId>dabrowski.bartosz</groupId>
     <artifactId>spring-pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>spring-pet-clinic</name>
     <description>Spring Pet Clinic Project</description>
 
@@ -49,7 +49,7 @@
         </pluginManagement>
     </build>
     <scm>
-        <url>https://github.com/BartoszDabrowski00/Spring-PetClinic/tree/master</url>
-        <connection>scm:git:https://github.com/BartoszDabrowski00/Spring-PetClinic.git</connection>
-    </scm>
+      <developerConnection>scm:git:https://github.com/BartoszDabrowski00/Spring-PetClinic.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
 </project>
