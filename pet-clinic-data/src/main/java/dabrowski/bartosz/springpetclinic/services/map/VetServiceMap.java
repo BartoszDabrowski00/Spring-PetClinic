@@ -1,11 +1,11 @@
 package dabrowski.bartosz.springpetclinic.services.map;
 
 import dabrowski.bartosz.springpetclinic.model.Vet;
-import dabrowski.bartosz.springpetclinic.services.CrudService;
+import dabrowski.bartosz.springpetclinic.services.VetService;
 
 import java.util.Set;
 
-public class VetServiceMap extends AbstractMapService<Vet, Long> implements CrudService<Vet, Long> {
+public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
     @Override
     public Set<Vet> findAll() {
