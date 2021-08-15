@@ -2,7 +2,6 @@ package dabrowski.bartosz.springpetclinic.services.map;
 
 import dabrowski.bartosz.springpetclinic.model.Owner;
 import dabrowski.bartosz.springpetclinic.model.Pet;
-import dabrowski.bartosz.springpetclinic.model.PetType;
 import dabrowski.bartosz.springpetclinic.services.OwnerService;
 import dabrowski.bartosz.springpetclinic.services.PetService;
 import dabrowski.bartosz.springpetclinic.services.PetTypeService;
