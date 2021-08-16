@@ -1,29 +1,22 @@
 package dabrowski.bartosz.springpetclinic.bootstrap;
 
 import dabrowski.bartosz.springpetclinic.model.*;
-import dabrowski.bartosz.springpetclinic.services.OwnerService;
-import dabrowski.bartosz.springpetclinic.services.PetTypeService;
-import dabrowski.bartosz.springpetclinic.services.SpecialityService;
-import dabrowski.bartosz.springpetclinic.services.VetService;
+import dabrowski.bartosz.springpetclinic.services.*;
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
 @Component
+@AllArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
-
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
-        this.ownerService = ownerService;
-        this.vetService = vetService;
-        this.petTypeService = petTypeService;
-        this.specialityService = specialityService;
-    }
+    private final VisitService visitService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -87,6 +80,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(pet2);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(pet2);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy kitty");
+
+        visitService.save(catVisit);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
