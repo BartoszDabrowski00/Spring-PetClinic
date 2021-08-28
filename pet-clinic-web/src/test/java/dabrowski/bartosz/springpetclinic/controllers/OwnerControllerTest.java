@@ -19,6 +19,7 @@ import java.util.Set;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -83,6 +84,44 @@ class OwnerControllerTest {
         when(ownerService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(owners.iterator().next()));
         mockMvc.perform(get("/owners"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(view().name("redirect:/owners/2"));
+                .andExpect(view().name("redirect:/owners/1"));
+    }
+
+    @Test
+    void initCreationForm() throws Exception{
+        mockMvc.perform(get("/owners/new"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"))
+                .andExpect(model().attributeExists("owner"));
+        verifyNoInteractions(ownerService);
+    }
+
+    @Test
+    void processCreationForm() throws Exception{
+        when(ownerService.save(any())).thenReturn(owners.iterator().next());
+        mockMvc.perform(post("/owners/new"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"))
+                .andExpect(model().attributeExists("owner"));
+        verify(ownerService).save(any());
+    }
+
+    @Test
+    void initUpdateForm() throws Exception{
+        when(ownerService.findById(anyLong())).thenReturn(owners.iterator().next());
+        mockMvc.perform(get("/owners/2/edit"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/createOrUpdateOwnerForm"))
+                .andExpect(model().attributeExists("owner"));
+    }
+
+    @Test
+    void processUpdateForm() throws Exception {
+        when(ownerService.save(any())).thenReturn(owners.iterator().next());
+        mockMvc.perform(post("/owners/2/edit"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"))
+                .andExpect(model().attributeExists("owner"));
+        verify(ownerService).save(any());
     }
 }
