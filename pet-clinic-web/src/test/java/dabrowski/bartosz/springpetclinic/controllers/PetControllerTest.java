@@ -116,16 +116,4 @@ class PetControllerTest {
 
         verify(petService).save(any());
     }
-
-    @Test
-    void populatePetTypes() {
-    }
-
-    @Test
-    void findOwner() {
-    }
-
-    @Test
-    void initOwnerBinder() {
-    }
 }

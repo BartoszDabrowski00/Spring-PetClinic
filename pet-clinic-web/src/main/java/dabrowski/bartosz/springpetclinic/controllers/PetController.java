@@ -15,6 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.Collection;
 
 @Controller
@@ -56,6 +58,7 @@ public class PetController {
             result.rejectValue("name", "duplicate", "already exists");
         }
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         if (result.hasErrors()) {
             model.addAttribute("pet", pet);
             return "pets/createOrUpdatePetForm";
@@ -78,7 +81,8 @@ public class PetController {
             model.addAttribute("pet", pet);
             return "pets/createOrUpdatePetForm";
         } else {
-            owner.getPets().add(pet);
+            owner.getPets().stream().filter(x->x.getId().equals(pet.getId())).forEach(x->x = pet);
+            pet.setOwner(owner);
             petService.save(pet);
             return "redirect:/owners/" + owner.getId();
         }
